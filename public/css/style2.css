@@ -1,0 +1,1261 @@
+/*for DragOn - absolute position and 100% width and height allow full scroll */
+html {
+	position: relative;
+	width:auto;
+	height:auto;
+	margin: 0;
+	padding:0;
+}
+body {
+	background-image:url(http://10.2.0.237/public/img/128-198.jpg);
+	background-repeat:repeat;
+	background-attachment: fixed;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	line-height: 20px;
+}
+p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+
+
+a:hover,
+a:focus {
+  color: #005580;
+  text-decoration: underline;
+}
+   body:after {
+
+        -webkit-transform: scale(5);
+        -webkit-transform-origin: top left;
+        -webkit-filter: blur(2px);
+    }
+table {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 5px;
+	border-collapse:collapse;
+	width:auto;
+	 background: rgba(242, 245, 240, 0.7) !important;
+	}
+
+
+h2 {
+	text-align: center;
+}
+
+h3 {
+	text-align: center;
+}
+p {
+	color: black;
+}
+p.red{
+	color: red;
+	font-weight: bold;
+}
+#white {
+	color: white;
+}
+h5 {
+	font-size: 12px;
+	font-weight: 700;
+	margin-bottom: 10px;
+	}
+.warning {
+	font-weight: bold;
+	color: black;
+	backgound-color: red;
+	font-size: 14px;
+	border: 2px solid red;
+		border-radius: 6px; /* Opera, Chrome */
+	-moz-border-radius: 6px; /* FF */
+}
+.caution {
+	font-weight: bold;
+	color: #000000 ;
+	background-color: #FFFF80;
+	font-size: 14px;
+	border: 2px solid #FF9900;
+	border-radius: 4px; /* Opera, Chrome */
+	-moz-border-radius: 4px; /* FF */
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.error {
+	font-weight: bold;
+	color: black;
+	font-size: 16px;
+	border: 2px solid red;
+	border-radius: 4px; /* Opera, Chrome */
+	-moz-border-radius: 4px; /* FF */
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+/* Success Message */
+.success {
+	font-weight: bold;
+	color: #009933 ;
+	background-color: #80FF80;
+	font-size: 14px;
+	border: 2px solid green;
+	border-radius: 4px; /* Opera, Chrome */
+	-moz-border-radius: 4px; /* FF */
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+/* add bottom margin between tables */
+#table1,
+#table2 {
+	margin-bottom: 20px;
+}
+
+.inputTrailer  {
+ height: 40px;
+}
+h1{
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:-2px;
+  font-size:2.5em;
+  margin:20px 0;
+}
+
+.white {
+	color: white;
+}
+
+.container-table{
+  width:1000px;
+  margin:auto;
+}
+#container-table {
+	width: 980px;
+
+}
+
+#container-table td {
+	padding: 1px !important;
+	width: 0px !important;
+}
+.blue{
+  border:2px solid #1ABC9C;
+}
+
+.blue thead{
+  background:#1ABC9C;
+}
+
+.purple{
+  border:2px solid #9B59B6;
+}
+
+.purple thead{
+  background:#9B59B6;
+}
+
+thead{
+  color:white;
+}
+
+th,td{
+  text-align:center;
+  padding:5px 0;
+}
+
+tbody tr:nth-child(even){
+  background:#ECF0F1;
+}
+
+tbody td:hover{
+background:#BDC3C7;
+}
+
+
+
+.scrollMore{
+  margin-top:200px;
+  color: white;
+}
+
+.up{
+  cursor:pointer;
+}
+
+/* top header that includes the Yard Managment name */
+#topHeader {
+	background: rgba(242, 245, 240, 0.6);
+	padding:10px;
+	text-align:center;
+	font-size:20px;
+	font-weight:bold;
+	width:auto;
+}
+.topHeaderBlur {
+	background: rgba(242, 245, 240, 0.2);
+	padding:10px;
+	width:100%;
+	height: 30px;
+	-webkit-filter: blur(3px);
+	-moz-filter: blur(3px);
+	-o-filter: blur(3px);
+	-ms-filter: blur(3px); 
+	filter: blur(3px);
+	position: absolute;
+	z-index: -1;
+}
+/* drag container */
+#drag {
+	margin: auto;
+	height: 100%;
+	width: 3100px;
+	display: table;
+	overflow: auto;
+	background: rgba(96, 96, 96, 0.3);
+}
+
+/* set border for images inside DRAG region - exclude image margin inheritance */
+
+#drag img {
+	margin: 1px;
+}
+
+#feedbackMessages {
+	z-index: 10001;
+}
+.container {
+	margin-left: 360px;
+	margin-top: 5px;
+}
+
+/* drag objects (DIV inside table cells) */
+.drag {
+	cursor: move;
+	margin-bottom: 1px;
+	margin-top: 1px;
+	background-color: white;
+	text-align: center;
+	font-size: 10pt; /* needed for cloned object */
+	width: 87px;
+	height: 20px;
+	line-height: 20px;
+	/* round corners */
+	border-radius: 4px; /* Opera, Chrome */
+	-moz-border-radius: 4px; /* FF */
+	z-index: 103;
+}
+.noDrag {
+	cursor: not-allowed;
+}
+
+/* Left side menu */
+.leftmenu {
+	margin-left: -200px;
+	margin: auto;
+	margin-top: 5px;
+	width: 150px;
+	height: auto;
+	float: left;
+	position: fixed;
+	background: rgba(242, 245, 240, 0.9);
+	border: 2px solid black;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	line-height: 20px;
+	z-index: 99;
+	padding-bottom: 16px;
+}
+
+div#optionsMenu {
+
+}
+.menuTitle {
+	color: #09C;
+}
+.options {
+	padding: 2px;
+}
+.multisingle {
+	text-align: center;
+	background-color: #CDCDCD;
+	padding: 5px;
+	border-radius: 10px;
+}
+
+.middleCheckbox {
+	margin: auto;
+	display: block;
+	float: none;
+	width: 110px;
+}
+/* message cell */
+.message_line {
+	padding-left: 10px;
+	font-size: 9pt;
+	color: #888;
+}
+
+input[type=checkbox].oval{
+	visibility: hidden;
+}
+
+label.toggler{ /* Label "track" style */
+	width: 85px; /* width of label */
+	height: 35px; /* height of label */
+	position: relative;
+	display: block; /* change "block" to "inline-block" if you want toggler to appear inline with other content next to it */
+	border-radius: 25px;
+	box-shadow: 8px 2px 8px rgba(0,0,0,0.7) inset, -7px 1px 8px rgba(0,0,0,0.7) inset; /* default gray shadow */
+	left: 0;
+	top: 0;
+	background: #7A7A7A; /* default tray background */
+	z-index: 50;
+	font: bold 12px Arial;
+	cursor: pointer;
+}
+
+label.toggler::before{ /* label "off" state text */
+	text-shadow: 0 -2px 1px #8a8a8a;
+	content: 'OFF';
+	position: absolute;
+	color: white;
+	top: 10px;
+	left: 64%;
+}
+
+label.toggler::after{ /* Round Knob "off" state */
+	content: '';
+	display: block;
+	width: 40px;
+	height: 40px;
+	border-radius: 40px;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	transition: all .5s ease;
+	box-shadow: 0 5px 10px rgba(0,0,0,.5), 2px -5px 5px rgba(0,0,0,.2) inset;
+	position: absolute;
+	top: -5px;
+	left: 0px;
+	background: rgb(255,255,255); /* knob style gradient */
+	background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(224,224,224,1) 37%, rgba(186,186,186,1) 38%, rgba(244,244,244,1) 48%, rgba(252,252,252,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,1)), color-stop(37%,rgba(224,224,224,1)), color-stop(38%,rgba(186,186,186,1)), color-stop(48%,rgba(244,244,244,1)), color-stop(100%,rgba(252,252,252,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(224,224,224,1) 37%,rgba(186,186,186,1) 38%,rgba(244,244,244,1) 48%,rgba(252,252,252,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(224,224,224,1) 37%,rgba(186,186,186,1) 38%,rgba(244,244,244,1) 48%,rgba(252,252,252,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(224,224,224,1) 37%,rgba(186,186,186,1) 38%,rgba(244,244,244,1) 48%,rgba(252,252,252,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%,rgba(224,224,224,1) 37%,rgba(186,186,186,1) 38%,rgba(244,244,244,1) 48%,rgba(252,252,252,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fcfcfc',GradientType=1 );
+}
+
+input[type=checkbox]:checked + label{ /* Label "track" "on" style */
+	background: #9FBA48; /* green background */
+	box-shadow: 8px 2px 8px rgba(58,145,34,0.7) inset, -7px 1px 8px rgba(58,145,34,0.7) inset; /* green shadow */
+}
+
+input[type=checkbox]:checked + label::before{ /* label "on" state text */
+	content: 'ON';
+	left: 11%;
+}
+
+input[type=checkbox]:checked + label::after{ /* Round Knob "on" state */
+	left: 45px;
+}
+
+
+
+/* ############ red theme ############# */
+
+input[type=checkbox]:checked + label.red{ /* Label "track" "on" style */
+	background: #C64141; /* green background */
+	box-shadow: 8px 2px 8px rgba(130,20,20,0.7) inset, -7px 1px 8px rgba(130,20,20,0.7) inset; /* red shadow */
+}
+
+/* ############ orange theme ############# */
+
+input[type=checkbox]:checked + label.orange{ /* Label "track" "on" style */
+	background: #ED9F0E; /* orange background */
+	box-shadow: 8px 2px 8px rgba(219, 116, 13,0.7) inset, -7px 1px 8px rgba(219, 116, 13,0.7) inset; /* orange shadow */
+}
+
+/* ############ yellow theme ############# */
+
+label.yellow::before{ /* label "off" state text */
+	color: white;
+}
+
+input[type=checkbox]:checked + label.yellow::before{ /* label "on" state text */
+	color: black;
+	text-shadow: 0 -2px 1px #eee;
+}
+
+input[type=checkbox]:checked + label.yellow{ /* Label "track" "on" style */
+	color: black;
+	background: #E8E009; /* yellow background */
+	box-shadow: 8px 2px 8px rgba(224, 196, 83,0.7) inset, -7px 1px 8px rgba(224, 196, 83,0.7) inset; /* yellow shadow */
+}
+
+/* ############ blue theme ############# */
+
+input[type=checkbox]:checked + label.blue{ /* Label "track" "on" style */
+	background: #0DBDD8; /* blue background */
+	box-shadow: 8px 2px 8px rgba(17, 120, 175,0.7) inset, -7px 1px 8px rgba(17, 120, 175,0.7) inset; /* blue shadow */
+}
+
+/* #### radio buttons #### */
+
+input[type="radio"].css3radio{
+  display: none;
+}
+
+label.toggler_r{ /* radio label */
+  display: block;
+  position: relative;
+  padding-left: 32px; /* space to the left of label text */
+  padding-top: 2px;
+  margin-bottom: 1em; /* bottom spacing */
+  cursor: pointer;
+}
+
+label.toggler_r::before{ /* outer round circle */
+  content: '';
+  display: block;
+  position:absolute;
+  width: 25px;
+  height: 25px;
+  background: #B1E5EF;
+  box-shadow: 0 0 3px #BFDEFC inset;
+  border-radius: 25px;
+  left: 0;
+  top: 0;
+}
+
+label.toggler_r::after{ /* inner dark circle */
+  content: '';
+  position:absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  left: 5px;
+  top: 5px;
+  overflow: hidden;
+  transition: all 0.2s;  /* CSS3 transition on dark circle */
+}
+
+input[type="radio"]:checked + label.toggler_r::after{ /* inner dark circle when radio is selected */
+  background: green;
+  box-shadow: 1px 1px 5px white;
+}
+
+
+/* Clearfix */
+.group:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
+*:first-child+html .group { zoom: 1; } /* IE7 */
+
+
+
+/* Menu */
+.menu { 
+	margin: 0 auto; 
+	list-style: none; 
+	position: relative; 
+	width: 100%;
+	margin-left: 30px;
+}
+.menu li { 
+	display: inline-block;	
+}
+.menu a { 
+	color: #bbb; 
+	font-size: 14px; 
+	float: left;
+	padding: 22px 10px 4px 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+.menu a:hover { 
+	color: white; 
+}
+#magic-line { 
+	position: absolute;
+	bottom: -2px; 
+	left: 0; 
+	width: 100px; 
+	height: 3px; 
+	background: #0000CC;
+}
+.current_page_item a { 
+	color: white !important; 
+}
+ 
+
+#alltrailers {
+	background: rgba(0, 0, 0, 0.6);
+	width: auto;
+	padding: 10px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 30px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	border: 2px solid orange;
+	border-radius: 5px;
+	-moz-border-radius: 5px;	
+	position: relative;
+	overflow: auto;
+}
+	
+.bottom {
+	margin-left: 750px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	text-align: center;
+	vertical-align: bottom;
+	min-width: 1050px;
+	max-width: 1050px;
+	position: relative;
+	float: left;
+	border: 1px solid black;
+	background: rgba(0, 0, 0, 0.3);
+	z-index: 1;
+}
+.bottomDrag {
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	text-align: center;
+	vertical-align: bottom;
+	position: relative;
+	max-height: 100px;
+	margin: auto;
+	border: 1px solid black;
+	background: rgba(0, 0, 0, 0.3);
+}
+.bottomtrailers {
+	text-align: center;
+	z-index: 1;
+}
+
+/* notes and details (initially details are hidden) */
+.nDetails {
+ 	display: none;
+	border-top: 1px solid #bebebe;
+	background: rgba(102, 178, 255, 0.70);
+	padding: 25px;
+	padding-top:50px;
+	padding-bottom:50px;
+	text-align: left;
+	font-weight: bold;
+	height: 250px !important;
+}
+
+/* 48 Footer droors */
+.shortOnly {
+	background-color: #666666 !important;
+}
+
+.side1 {
+	background-color: #A2A2A2;
+}
+
+.side2 {
+	background-color: #8D8D8D;
+}
+.fixed {
+	position: fixed;
+
+}
+.cr {
+	position: relative;
+	margin: auto;
+	width: 400px;
+	margin-top: 30px;
+
+}
+
+
+.left {
+	float: left;
+}
+/* Shuttle Objects */
+.sh, .SH {
+	border: 2px solid #499B33;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+
+	background: rgba(153, 255, 153, 0.80);
+}
+/* Shuttle Objects */
+.s45, .S45 {
+	border: 2px solid red;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background-color: rgba(153, 255, 153, 0.80);
+}
+.s48, .S48 {
+	border: 2px solid #3333CC;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background-color: rgba(153, 255, 153, 0.80);
+}		
+/* Cloned objects */
+.cl, .CL {
+	border: 2px solid #E6A361;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(204, 102, 0, 0.75);
+}
+/* Cloned Commercial trailers  */
+.co, .CO {
+	border: 2px solid #E6A361;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(204, 102, 0, 0.40);
+}
+/* Trailers without skirts */
+.ns, .NS {
+	border: 2px solid yellow;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(204, 102, 0, 0.40);
+}
+.c45, .C45 {
+	border: 2px solid red;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(204, 102, 0, 0.40);
+}
+.c48, .C48 {
+	border: 2px solid #3333CC;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(204, 102, 0, 0.40);
+}
+/* speciality trailers */
+.sp, .SP {
+	border: 3px solid purple;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(204, 102, 0, 0.40);
+}
+.dt, .DT {
+	border: 2px solid SteelBlue;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(102, 178, 255, 0.40);
+}
+.d40, .D40 {
+	border: 2px solid #FF3300;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(102, 178, 255, 0.40);
+}
+.d45, .D45 {
+	border: 2px solid red;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(102, 178, 255, 0.40);
+}
+.d48, .D48 {
+	border: 2px solid #66FFFF;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(102, 178, 255, 0.40);
+}
+
+.d2, .D2 {
+	border: 2px solid #FF99CC;
+	height: auto;
+	width: auto;
+	min-width: 90px;
+	max-width: 95px;
+	background: rgba(102, 178, 255, 0.40);
+}								
+
+#page2	{
+	border: 2px solid red;
+	background-color: #9C9C9C;
+}
+#page3 {
+	border: 2px solid blue;
+	background-color: gray;
+}
+#page4 {
+	border: 2px solid green;
+	background-color: #717171;
+}
+#page5 {
+	border: 2px solid orange;
+	background-color: #5A5A5A;
+}
+#page6 {
+	border: 2px solid purple;
+	background-color: #393939;
+}
+#page7 {
+	border: 2px solid violet;
+	background-color: #393939;
+}
+#page8 {
+	border: 2px solid red;
+	background-color: #393939;
+}
+#page9 {
+	border: 2px solid yellow;
+	background-color: #393939;
+}
+#page10 {
+	border: 2px solid teal;
+	background-color: #393939;
+}
+#page11 {
+	border: 2px solid lime;
+	background-color: #393939;
+}
+#page12 {
+	border: 2px solid #66FFFF;
+	background-color: #393939;
+}
+#page13 {
+	border: 2px solid #FF0066;
+	background-color: #393939;
+}
+#page14 {
+	border: 2px solid #FFCC00;
+	background-color: #393939;
+}
+#page15 {
+	border: 2px solid #FFF;
+	background-color: #393939;
+}
+/* allow / deny access to cells marked with 'mark' class name */
+.mark {
+	color: white;
+	background-color: black;
+	cursor: no-drop;
+}
+.shortOnly {
+	color: white;
+	background-color: #666666;
+}
+/* trash cell */
+.trash {
+	color: white;
+	background-color: #2D4B7A;
+}
+
+/* tables */
+div#drag table {
+	background-color: #e0e0e0;
+	border-collapse: collapse;
+}
+ /* Trailer status */
+.Empty {
+	background-color: #FFFFFF;
+}
+.Ready {
+	/*background-color: #66FF33;*/
+	background-image:url(http://10.2.0.237/public/img/greenpulse.gif);
+}
+
+.Loading {
+	background-image:url(http://10.2.0.237/public/img/redpulse.gif);
+}
+
+.Loaded-In {
+	background-color: #2EB8E6;
+}
+.Loaded-Out {
+	background-color: #CCFF33;
+}
+.NP {
+	background-color: #FFFF66;
+}
+.EPJ {
+	background-color: #D18CD1;
+}
+.Disabled {
+	background-color: #C1532E;
+}
+.Inbound {
+	background-color: #9966FF;
+}
+
+/* END Trailer Status */
+
+/* Sticky Notes Styles Below */
+.note{
+	height:150px;
+	padding:10px;
+	width:150px;
+	position:absolute;
+	overflow:hidden;
+	cursor:move;
+	
+	font-family:Trebuchet MS,Tahoma,Myriad Pro,Arial,Verdana,sans-serif;
+	font-size:22px;
+	
+	/* Adding a CSS3 shadow below the note, in the browsers which support it: */
+	-moz-box-shadow:2px 2px 0 #DDDDDD;
+	-webkit-box-shadow:2px 2px 0 #DDDDDD;
+	box-shadow:2px 2px 0 #DDDDDD;
+}
+/*public notes notification */
+[data-notifications] {
+	position: relative;
+}
+
+[data-notifications]:after {
+	content: attr(data-notifications);
+	position: absolute;
+	background: red;
+	border-radius: 50%;
+	display: inline-block;
+	padding: 0.3em;
+	color: #f2f2f2;
+	right: -2px;
+	top: -1px;
+}
+/*end of notification */
+#fancy_ajax .note{	cursor:default; }
+
+/* Three styles for the notes: */
+
+.yellow{
+	background-color:#FDFB8C;
+	border:1px solid #DEDC65;	
+}
+
+.blue{
+	background-color:#A6E3FC;
+	border:1px solid #75C5E7;	
+}
+
+.green{
+	background-color:#A5F88B;
+	border:1px solid #98E775;	
+}
+
+.note-delete {
+    background:url(../img/close.gif);
+    width:22px;
+    height:22px;
+    position: absolute;
+    top:2px;
+    right:1px;
+	cursor: pointer;
+}
+
+/* Each note has a data span, which holds its ID */
+span.data{	display:none; }
+
+/* The "Add a note" button: */
+#addButton{
+	position:absolute;
+	top: 130px;
+	left: 45%;
+	z-index: 9999;
+
+}
+
+/* Green button class: */
+a.green-button,a.green-button:visited{
+	background-color:#A5F88B;
+	color:black;
+	display:block;
+	font-size:18px;
+	font-weight:bold;
+	height:25px;
+	padding:6px 5px 4px;
+	text-align:center;
+	width:260px;
+	text-shadow:1px 1px 1px #DDDDDD;
+
+}
+
+a.green-button:hover{
+	text-decoration:none;
+	background-position:left bottom;
+}
+
+.author{
+	/* The author name on the note: */
+	bottom:10px;
+	color:#666666;
+	font-family:Arial,Verdana,sans-serif;
+	font-size:12px;
+	position:absolute;
+	right:10px;
+}
+
+#main{
+	/* Contains all the notes and limits their movement: */
+	margin:0 auto;
+	position:relative;
+	width:980px;
+	height:500px;
+	z-index:10;
+	background:url(img/add_a_note_help.gif) no-repeat left top;
+}
+
+h3.popupTitle{
+	border-bottom:1px solid #DDDDDD;
+	color:#666666;
+	font-size:24px;
+	font-weight:normal;
+	padding:0 0 5px;
+}
+
+#noteData{
+	/* The input form in the pop-up: */
+	height:200px;
+	margin:30px 0 0 200px;
+	width:350px;
+}
+
+.note-form label{
+	display:block;
+	font-size:10px;
+	font-weight:bold;
+	letter-spacing:1px;
+	text-transform:uppercase;
+	padding-bottom:3px;
+}
+
+.note-form textarea, .note-form input[type=text]{
+	background-color:#FCFCFC;
+	border:1px solid #AAAAAA;
+	font-family:Arial,Verdana,sans-serif;
+	font-size:16px;
+	height:60px;
+	padding:5px;
+	width:300px;
+	margin-bottom:10px;
+}
+
+.notes {
+	min-height: 35px;
+}
+
+.note-form input[type=text]{	height:auto; }
+
+.color{
+	/* The color swatches in the form: */
+	cursor:pointer;
+	float:left;
+	height:10px;
+	margin:0 5px 0 0;
+	width:10px;
+}
+
+#note-submit{	margin:20px auto; }
+/* End Sticky Notes Styles */
+/* input elements in dragging container */
+div#drag input {
+	cursor: auto;
+}
+	/* height for input text in DIV element */
+	div#drag #d13 input {
+		height: 13px;
+	}
+	/* height for dropdown menu in DIV element */
+	div#drag #d5 select {
+		height: 20px;
+	}
+
+/* table cells */
+div#drag td {
+	height: 62px;
+	border: 1px solid white;
+	text-align: center;
+	font-size: 10pt;
+	padding: 2px;
+}
+
+
+/* "Click" button */
+.button {
+	padding: 20px; 
+	background-color: #09C; 
+	cursor: pointer; 
+	color: white; 
+	height: 50px;
+	min-width: 80px;
+	width: auto;
+	font-weight: bold;
+	border: none;
+	padding-left: 10px;
+	padding-right: 10px;
+	display: block;
+	margin: auto;
+}
+/* "Click" button */
+.button2 {
+	background-color: #669900;
+	color: white; 
+	height: 50px;
+	min-width: 80px;
+	width: auto;
+	padding: 0px;
+	font-weight: bold;
+	border: none;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+/* Submit Button */
+#sub {
+	background-color: green;
+	color: white;
+	border: none;
+	vertical-align: middle;
+	height: 60px;
+	width: 180px;
+	padding: 20px;
+	font-weight: bold;
+	font-size: 18px;
+}
+/* Add  Button */
+#add {
+	background-color: #19A3D1;
+	color: white;
+	border: none;
+	vertical-align: middle;
+	height: 40px;
+	width: 180px;
+	padding: 20px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+/* toggle checkboxes at the bottom */
+.checkbox {
+	margin-left: 13px;
+	margin-right: 14px;
+	width: 13px; /* needed for IE ?! */
+}
+
+
+
+.jcarousel-wrapper {
+    margin: 20px auto;
+    position: relative;
+    border: 10px solid #fff;
+	max-width: 600px;
+	min-width: 300px;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 0 2px #999;
+       -moz-box-shadow: 0 0 2px #999;
+            box-shadow: 0 0 2px #999;
+}
+
+
+.jcarousel-wrapper .photo-credits {
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+    font-size: 13px;
+    color: #fff;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.85);
+    opacity: .66;
+}
+
+.jcarousel-wrapper .photo-credits a {
+    color: #fff;
+}
+
+/** Carousel **/
+
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+
+}
+
+.jcarousel ul {
+    width: 20000em;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel li {
+    float: left;
+}
+
+/** Carousel Controls **/
+
+.jcarousel-control-prev,
+.jcarousel-control-next {
+    position: absolute;
+    top: 200px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 0 1px #000;
+    font: 24px/27px Arial, sans-serif;
+    -webkit-border-radius: 30px;
+       -moz-border-radius: 30px;
+            border-radius: 30px;
+    -webkit-box-shadow: 0 0 19px black;
+       -moz-box-shadow: 0 0 19px black;
+            box-shadow: 0 0 19px black;
+}
+
+.jcarousel-control-prev {
+    left: -50px;
+}
+
+.jcarousel-control-next {
+    right: -50px;
+}
+
+.jcarousel-control-prev:hover span,
+.jcarousel-control-next:hover span {
+    display: block;  
+}
+
+.jcarousel-control-prev.inactive,
+.jcarousel-control-next.inactive {
+    opacity: .5;
+    cursor: default;
+}
+
+/** Carousel Pagination **/
+
+.jcarousel-pagination {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+}
+
+.jcarousel-pagination a {
+    text-decoration: none;
+    display: inline-block;
+    
+    font-size: 11px;
+    line-height: 14px;
+    min-width: 14px;
+    
+    background: #fff;
+    color: #4E443C;
+    border-radius: 14px;
+    padding: 3px;
+    text-align: center;
+    
+    margin-right: 2px;
+    
+    opacity: .75;
+}
+
+.jcarousel-pagination a.active {
+    background: #666666;
+    color: #fff;
+    opacity: 1;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+}
+
+.context {
+	background:url("http://10.2.0.237/public/img/bg_glow.png") #666666;
+    min-width: 768px;
+	border-radius: 55px 55px 55px 55px;
+	-webkit-animation: changeOpacity 3s; /* Chrome, Safari, Opera */
+    animation: changeOpacity 3s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes changeOpacity {
+    from {opacity: 0.0;}
+    to {opacity: 1.0;}
+}
+
+/* Standard syntax */
+@keyframes changeOpacity {
+    from {opacity: 0.0;}
+    to {opacity: 1.0;}
+}
+
+.legend {
+	text-align: left;
+	background:url("http://10.2.0.237/public/img/bg_glow.png") #A1A1A1;
+	border-radius: 15px 15px 15px 15px;
+	width: 500px;
+	padding: 10px;
+}
+
+.backgroundColor {
+	background: #A9A9A9;
+	border-radius: 15px 15px 15px 15px;
+	width: 900px;
+	padding: 10px;
+	margin: auto;
+}
+
+.legend ul li {
+	padding-bottom: 20px;
+}
+
+/* styling for Notes buttons */
+.radio-toolbar {
+    margin-left: 0px;
+    margin-top: 4px;
+	z-index: 10001;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    background-color: #bbb;
+    padding: 4px 11px;
+    font-family: Arial;
+    font-size: 16px;
+	z-index: 10001;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #66FF66;
+} 
+/*End */

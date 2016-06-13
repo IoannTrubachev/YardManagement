@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+	<meta charset='UTF-8'>
+	
+	<title>jQuery MagicLine Navigation Demo</title>
+	
+	<style>
+	/*
+	 CSS-Tricks Example - MagicLine Demo
+	 by Chris Coyier
+	 http://css-tricks.com
+*/
+
+* { margin: 0; padding: 0; }
+body { font: 14px Georgia, serif; background: #2F2626; color: #eee; }
+
+header { padding: 100px 0 0 0; display: block; }
+header h1 { width: 960px; margin: 0 auto; }
+a { color: #eee; }
+a:hover { color: white; }
+
+.nav-wrap { 
+	margin: 50px auto; 
+	background-color: rgba(0,0,0,0.6); 
+	border-top:    2px solid white; 
+	border-bottom: 2px solid white; 
+}
+
+/* Clearfix */
+.group:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; }
+*:first-child+html .group { zoom: 1; } /* IE7 */
+
+
+
+/* Example One */
+#example-one { 
+	margin: 0 auto; 
+	list-style: none; 
+	position: relative; 
+	width: 960px; 
+}
+#example-one li { 
+	display: inline-block;	
+}
+#example-one a { 
+	color: #bbb; 
+	font-size: 14px; 
+	float: left;
+	padding: 6px 10px 4px 10px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+#example-one a:hover { 
+	color: white; 
+}
+#magic-line { 
+	position: absolute;
+	bottom: -2px; 
+	left: 0; 
+	width: 100px; 
+	height: 2px; 
+	background: #fe4902;
+}
+.current_page_item a { 
+	color: white !important; 
+}
+.ie6 #example-one li, .ie7 #example-one li { 
+	display: inline; 
+}
+.ie6 #magic-line {
+	bottom: -3px;
+}
+
+
+/* Example Two */
+#example-two { 
+	margin: 0 auto; 
+	list-style: none; 
+	position: relative; 
+	width: 960px; 
+}
+#example-two li { 
+	display: inline-block; 
+}
+#example-two li a { 
+	position: relative; 
+	z-index: 200; 
+	color: #bbb; 
+	font-size: 14px; 
+	display: block; 
+	float: left; 
+	padding: 6px 10px 4px 10px;
+	text-decoration: none;
+	text-transform: uppercase; 
+}
+#example-two li a:hover { 
+	color: white; 
+}
+#example-two #magic-line-two { 
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	width: 100px; 
+	background: #900; 
+	z-index: 100; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+.current_page_item_two a { 
+	color: white !important; 
+}
+.ie6 #example-two li, .ie7 #example-two li {
+	display: inline;
+}
+	</style>
+	
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+		
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <script>$(function() {
+
+    var $el, leftPos, newWidth;
+        $mainNav2 = $("#example-two");
+    
+    /*
+        EXAMPLE ONE
+    */
+    
+    /* Add Magic Line markup via JavaScript, because it ain't gonna work without */
+    $("#example-one").append("<li id='magic-line'></li>");
+    
+    /* Cache it */
+    var $magicLine = $("#magic-line");
+    
+    $magicLine
+        .width($(".current_page_item").width())
+        .css("left", $(".current_page_item a").position().left)
+        .data("origLeft", $magicLine.position().left)
+        .data("origWidth", $magicLine.width());
+        
+    $("#example-one li").find("a").hover(function() {
+        $el = $(this);
+        leftPos = $el.position().left;
+        newWidth = $el.parent().width();
+        
+        $magicLine.stop().animate({
+            left: leftPos,
+            width: newWidth
+        });
+    }, function() {
+        $magicLine.stop().animate({
+            left: $magicLine.data("origLeft"),
+            width: $magicLine.data("origWidth")
+        });    
+    });
+    
+    
+    
+    
+    /*
+        EXAMPLE TWO
+    */
+    
+    $mainNav2.append("<li id='magic-line-two'></li>");
+    
+    var $magicLineTwo = $("#magic-line-two");
+    
+    $magicLineTwo
+        .width($(".current_page_item_two").width())
+        .height($mainNav2.height())
+        .css("left", $(".current_page_item_two a").position().left)
+        .data("origLeft", $(".current_page_item_two a").position().left)
+        .data("origWidth", $magicLineTwo.width())
+        .data("origColor", $(".current_page_item_two a").attr("rel"));
+                
+    $("#example-two a").hover(function() {
+        $el = $(this);
+        leftPos = $el.position().left;
+        newWidth = $el.parent().width();
+        $magicLineTwo.stop().animate({
+            left: leftPos,
+            width: newWidth,
+            backgroundColor: $el.attr("rel")
+        })
+    }, function() {
+        $magicLineTwo.stop().animate({
+            left: $magicLineTwo.data("origLeft"),
+            width: $magicLineTwo.data("origWidth"),
+            backgroundColor: $magicLineTwo.data("origColor")
+        });    
+    });
+    
+    /* Kick IE into gear */
+    $(".current_page_item_two a").mouseenter();
+    
+});</script>
+</head>
+
+<body>
+
+<div id="demo-top-bar">
+
+  <div id="demo-bar-inside">
+
+    <h2 id="demo-bar-badge">
+      <a href="/">CSS-Tricks Example</a>
+    </h2>
+
+    <div id="demo-bar-buttons">
+      <a class='header-button' href='/jquery-magicline-navigation/'>&larr; Back to Article</a> &nbsp; <a class='header-button' href='/examples/'>More Demos &rarr;</a>    </div>
+
+  </div>
+
+</div>    
+    <header>
+        <h1>jQuery MagicLine Navigation Demo</h1>
+    </header>
+
+	<div class="nav-wrap">
+
+		<ul class="group" id="example-one">
+            <li class="current_page_item">
+            	<a href="#">Home</a>
+            </li>
+            <li><a href="#">Buy Tickets</a></li>
+            <li><a href="#">Group Sales</a></li>
+            <li><a href="#">Reviews</a></li>
+            <li><a href="#">The Show</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Photos</a></li>
+            <li><a href="#">Magic Shop</a></li>
+        </ul>
+        
+    </div>
+        
+    <div class="nav-wrap">   
+        
+        <ul class="group" id="example-two">
+            <li><a rel="#fe4902" href="#">Home</a></li>
+            <li><a rel="#A41322" href="#">Buy Tickets</a></li>
+            <li><a rel="#C6AA01" href="#">Group Sales</a></li>
+            <li class="current_page_item_two"><a rel="#900" href="#">Reviews</a></li>
+            <li><a rel="#D40229" href="#">The Show</a></li>
+            <li><a rel="#98CEAA" href="#">Videos</a></li>
+            <li><a rel="#1B9B93" href="#">Photos</a></li>
+            <li><a rel="#8DC91E" href="#">Magic Shop</a></li>
+        </ul>
+        
+    </div>
+			
+ <style type="text/css" style="display: none !important;">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	body {
+		overflow-x: hidden;
+	}
+	#demo-top-bar {
+		text-align: left;
+		background: #222;
+		position: relative;
+		zoom: 1;
+		width: 100% !important;
+		z-index: 6000;
+		padding: 20px 0 20px;
+	}
+	#demo-bar-inside {
+		width: 960px;
+		margin: 0 auto;
+		position: relative;
+	}
+	#demo-bar-buttons {
+		padding-top: 10px;
+		float: right;
+	}
+	#demo-bar-buttons a {
+		font-size: 12px;
+		margin-left: 20px;
+		color: white;
+		margin: 2px 0;
+		text-decoration: none;
+		font: 14px "Lucida Grande", Sans-Serif !important;
+	}
+	#demo-bar-buttons a:hover,
+	#demo-bar-buttons a:focus {
+		text-decoration: underline;
+	}
+	#demo-bar-badge {
+		display: inline-block;
+		width: 302px;
+		padding: 0 !important;
+		margin: 0 !important;
+		background-color: transparent !important;
+	}
+	#demo-bar-badge a {
+		display: block;
+		width: 100%;
+		height: 38px;
+		border-radius: 0;
+		bottom: auto;
+		margin: 0;
+		background: url(/images/examples-logo.png) no-repeat;
+		background-size: 100%;
+		overflow: hidden;
+		text-indent: -9999px;
+	}
+	#demo-bar-badge:before, #demo-bar-badge:after {
+		display: none !important;
+	}
+</style>
+</body>
+
+</html>
+
+
